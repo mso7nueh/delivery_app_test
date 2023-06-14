@@ -8,25 +8,28 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
-      child: Stack(
-        alignment: AlignmentDirectional.topStart,
-        children: [
-          Image.network(
-            category.imageUrl,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 12, left: 16),
-            child: Text(
-              category.name,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
+    return Padding(
+      padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0),
+      child: GestureDetector(
+        onTap: () {},
+        child: Stack(
+          alignment: AlignmentDirectional.topStart,
+          children: [
+            Image.network(
+              category.imageUrl,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 12, left: 16),
+              child: Text(
+                category.name,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
