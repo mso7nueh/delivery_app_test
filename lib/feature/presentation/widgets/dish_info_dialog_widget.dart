@@ -4,6 +4,7 @@ import 'package:delivery_app_test/feature/presentation/bloc/cart_bloc/cart_event
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class DishInfoDialogWidget extends StatelessWidget {
   final DishEntity dish;
@@ -16,8 +17,8 @@ class DishInfoDialogWidget extends StatelessWidget {
       margin: const EdgeInsets.only(
         left: 16.0,
         right: 16.0,
-        top: 152,
-        bottom: 152,
+        top: 150,
+        bottom: 150,
       ),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -55,7 +56,10 @@ class DishInfoDialogWidget extends StatelessWidget {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      child: const Icon(Icons.favorite_border),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SvgPicture.asset('assets/icons/favorite.svg'),
+                      ),
                     ),
                     GestureDetector(
                       onTap: () => Navigator.pop(context),
@@ -66,7 +70,10 @@ class DishInfoDialogWidget extends StatelessWidget {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(10.0),
                         ),
-                        child: const Icon(Icons.close),
+                        child: Padding(
+                          padding: const EdgeInsets.all(6.0),
+                          child: SvgPicture.asset('assets/icons/close.svg'),
+                        ),
                       ),
                     ),
                   ],

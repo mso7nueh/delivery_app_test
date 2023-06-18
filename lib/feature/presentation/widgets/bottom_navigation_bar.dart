@@ -12,6 +12,7 @@ class MyBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      backgroundColor: Colors.white,
       onTap: (index) {
         BlocProvider.of<NavigationBloc>(context)
             .add(NavigationIndexChange(index: index, category: ''));

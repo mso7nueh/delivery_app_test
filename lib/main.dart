@@ -34,6 +34,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<NavigationBloc>(create: (context) => sl<NavigationBloc>()),
       ],
       child: MaterialApp(
+        theme: ThemeData(
+          fontFamily: 'SFProDisplay',
+        ),
         debugShowCheckedModeBanner: false,
         home: BlocBuilder<NavigationBloc, NavigationState>(
           builder: (context, state) {
@@ -47,6 +50,7 @@ class MyApp extends StatelessWidget {
               if (state.index == 2) body = const CartListWidget();
             }
             return Scaffold(
+              backgroundColor: Colors.white,
               appBar: PreferredSize(
                 preferredSize: const Size.fromHeight(kToolbarHeight),
                 child: appBar,

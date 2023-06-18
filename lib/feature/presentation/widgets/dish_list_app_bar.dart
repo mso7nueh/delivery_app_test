@@ -3,6 +3,7 @@ import 'package:delivery_app_test/feature/presentation/bloc/navigation_bloc/navi
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class DishListAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String categoryName;
@@ -17,10 +18,10 @@ class DishListAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      systemOverlayStyle: SystemUiOverlayStyle(
+      systemOverlayStyle: const SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.dark,
-        statusBarColor: Theme.of(context).scaffoldBackgroundColor,
-        systemNavigationBarColor: Theme.of(context).scaffoldBackgroundColor,
+        statusBarColor: Colors.white,
+        systemNavigationBarColor: Colors.white,
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
       title: Text(
@@ -32,10 +33,8 @@ class DishListAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       leading: IconButton(
-        icon: const Icon(
-          Icons.arrow_back_ios_new,
-          color: Colors.black,
-          size: 18,
+        icon: SvgPicture.asset(
+          'assets/icons/arrow_back.svg',
         ),
         onPressed: () {
           BlocProvider.of<NavigationBloc>(context)
@@ -44,7 +43,7 @@ class DishListAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       centerTitle: true,
       elevation: 0,
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: Colors.white,
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 16.0),

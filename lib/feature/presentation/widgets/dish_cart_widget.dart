@@ -4,6 +4,7 @@ import 'package:delivery_app_test/feature/presentation/bloc/cart_bloc/cart_event
 import 'package:delivery_app_test/feature/presentation/bloc/cart_bloc/cart_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 
 class DishCartWidget extends StatelessWidget {
   final DishEntity dish;
@@ -69,9 +70,9 @@ class DishCartWidget extends StatelessWidget {
                             BlocProvider.of<CartBloc>(context)
                                 .add(RemoveDishEvent(dish: dish));
                           },
-                          child: const Padding(
-                            padding: EdgeInsets.fromLTRB(6.0, 4.0, 16.0, 4.0),
-                            child: Icon(Icons.remove),
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(6.0, 4.0, 16.0, 4.0),
+                            child: SvgPicture.asset('assets/icons/remove.svg'),
                           ),
                         ),
                         Text(
@@ -85,9 +86,9 @@ class DishCartWidget extends StatelessWidget {
                             BlocProvider.of<CartBloc>(context)
                                 .add(AddDishEvent(dish: dish));
                           },
-                          child: const Padding(
-                            padding: EdgeInsets.fromLTRB(16.0, 4.0, 6.0, 4.0),
-                            child: Icon(Icons.add),
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(16.0, 4.0, 6.0, 4.0),
+                            child: SvgPicture.asset('assets/icons/add.svg'),
                           ),
                         ),
                       ],

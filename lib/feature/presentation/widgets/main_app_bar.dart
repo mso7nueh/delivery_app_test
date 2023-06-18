@@ -13,17 +13,17 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      systemOverlayStyle: SystemUiOverlayStyle(
+      systemOverlayStyle: const SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.dark,
-        statusBarColor: Theme.of(context).scaffoldBackgroundColor,
-        systemNavigationBarColor: Theme.of(context).scaffoldBackgroundColor,
+        statusBarColor: Colors.white,
+        systemNavigationBarColor: Colors.white,
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
       elevation: 0,
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: Colors.white,
       leadingWidth: 200,
       leading: Padding(
-        padding: const EdgeInsets.only(top: 8.0, bottom: 7.0),
+        padding: const EdgeInsets.only(top: 8.0, bottom: 6.0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
