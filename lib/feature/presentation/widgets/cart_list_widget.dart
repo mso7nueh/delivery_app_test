@@ -3,6 +3,7 @@ import 'package:delivery_app_test/feature/presentation/bloc/cart_bloc/cart_state
 import 'package:delivery_app_test/feature/presentation/widgets/dish_cart_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class CartListWidget extends StatelessWidget {
   const CartListWidget({super.key});
@@ -40,7 +41,7 @@ class CartListWidget extends StatelessWidget {
                   color: const Color.fromARGB(255, 51, 100, 224),
                   onPressed: state.cartSum > 0 ? () {} : null,
                   child: Text(
-                    'Оплатить ${state.cartSum} ₽',
+                    'Оплатить ${NumberFormat.simpleCurrency(locale: 'ru-RU', decimalDigits: 0).format(state.cartSum)}',
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
