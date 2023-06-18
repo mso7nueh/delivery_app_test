@@ -14,7 +14,7 @@ class DishList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<DishListBloc>(context, listen: false)
-        .add(const FetchDishList());
+        .add(const FetchDishList(filters: {'Все меню'}));
     return BlocBuilder<DishListBloc, DishListState>(
       builder: (context, state) {
         List<DishEntity> dishes = [];
@@ -22,7 +22,13 @@ class DishList extends StatelessWidget {
         if (state is DishListLoading) {
           return _loadingIndicator();
         } else if (state is DishListLoaded) {
-          dishes = state.dishes;
+          for (DishEntity dish in state.dishes) {
+            bool flagFilter = true;
+            for (String filter in state.filters) {
+              if (!dish.tegs.contains(filter)) flagFilter = false;
+            }
+            flagFilter ? dishes.add(dish) : flagFilter = true;
+          }
         } else if (state is DishListError) {
           return Text(
             state.message,

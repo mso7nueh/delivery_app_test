@@ -10,6 +10,7 @@ import 'package:delivery_app_test/feature/domain/usecases/get_all_dishes.dart';
 import 'package:delivery_app_test/feature/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'package:delivery_app_test/feature/presentation/bloc/category_list_cubit/category_list_cubit.dart';
 import 'package:delivery_app_test/feature/presentation/bloc/dish_list_bloc/dish_list_bloc.dart';
+import 'package:delivery_app_test/feature/presentation/bloc/navigation_bloc/navigation_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -20,6 +21,10 @@ Future<void> init() async {
   // BLoC / Cubit
   sl.registerFactory(
     () => CartBloc(),
+  );
+
+  sl.registerFactory(
+    () => NavigationBloc(),
   );
 
   sl.registerFactory(

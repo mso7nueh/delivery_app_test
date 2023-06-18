@@ -5,7 +5,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double height;
 
-  MainAppBar({super.key, required this.height});
+  const MainAppBar({super.key, this.height = kToolbarHeight});
+
+  @override
+  Size get preferredSize => Size.fromHeight(height);
 
   @override
   Widget build(BuildContext context) {
@@ -20,17 +23,17 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       leadingWidth: 200,
       leading: Padding(
-        padding: EdgeInsets.only(top: 8.0, bottom: 7.0),
+        padding: const EdgeInsets.only(top: 8.0, bottom: 7.0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.only(left: 16.0, top: 6.0),
+              padding: const EdgeInsets.only(left: 16.0, top: 6.0),
               child: SvgPicture.asset(
                 'assets/icons/location.svg',
               ),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.only(left: 4.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -63,7 +66,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       actions: [
         Padding(
-          padding: EdgeInsets.only(right: 16.0),
+          padding: const EdgeInsets.only(right: 16.0),
           child: CircleAvatar(
             radius: 22,
             child: Image.asset('assets/images/avatar.png'),
@@ -72,7 +75,4 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
       ],
     );
   }
-
-  @override
-  Size get preferredSize => Size.fromHeight(height);
 }

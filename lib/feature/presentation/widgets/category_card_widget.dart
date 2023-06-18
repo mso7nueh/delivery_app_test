@@ -1,6 +1,8 @@
 import 'package:delivery_app_test/feature/domain/entities/category_entity.dart';
-import 'package:delivery_app_test/feature/presentation/pages/dish_list_page.dart';
+import 'package:delivery_app_test/feature/presentation/bloc/navigation_bloc/navigation_bloc.dart';
+import 'package:delivery_app_test/feature/presentation/bloc/navigation_bloc/navigation_event.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class CategoryCard extends StatefulWidget {
@@ -19,13 +21,8 @@ class _CategoryCardState extends State<CategoryCard> {
       padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0),
       child: GestureDetector(
         onTap: () {
-          setState(() {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        DishPage(categoryName: widget.category.name)));
-          });
+          BlocProvider.of<NavigationBloc>(context).add(
+              NavigationIndexChange(index: 0, category: widget.category.name));
         },
         child: Stack(
           alignment: AlignmentDirectional.topStart,

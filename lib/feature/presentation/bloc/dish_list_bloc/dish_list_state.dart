@@ -14,11 +14,12 @@ class DishListLoading extends DishListState {}
 
 class DishListLoaded extends DishListState {
   final List<DishEntity> dishes;
+  final Set<String> filters;
 
-  const DishListLoaded({required this.dishes});
+  const DishListLoaded({required this.dishes, required this.filters});
 
   @override
-  List<Object> get props => [dishes];
+  List<Object> get props => [dishes, filters];
 }
 
 class DishListError extends DishListState {

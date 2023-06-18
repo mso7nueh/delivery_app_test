@@ -22,7 +22,8 @@ class DishListBloc extends Bloc<DishListEvent, DishListState> {
     final failureOrDishes = await getAllDishes(GetAllDishesParams());
     emit(failureOrDishes.fold(
         (failure) => DishListError(message: _mapFailureToMessage(failure)),
-        (dishList) => DishListLoaded(dishes: dishList)));
+        (dishList) =>
+            DishListLoaded(dishes: dishList, filters: event.filters)));
   }
 
   String _mapFailureToMessage(Failure failure) {

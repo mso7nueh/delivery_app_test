@@ -1,7 +1,14 @@
 import 'package:delivery_app_test/feature/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'package:delivery_app_test/feature/presentation/bloc/category_list_cubit/category_list_cubit.dart';
 import 'package:delivery_app_test/feature/presentation/bloc/dish_list_bloc/dish_list_bloc.dart';
-import 'package:delivery_app_test/feature/presentation/pages/main_page.dart';
+import 'package:delivery_app_test/feature/presentation/bloc/navigation_bloc/navigation_bloc.dart';
+import 'package:delivery_app_test/feature/presentation/bloc/navigation_bloc/navigation_state.dart';
+import 'package:delivery_app_test/feature/presentation/page/dish_list_page.dart';
+import 'package:delivery_app_test/feature/presentation/widgets/bottom_navigation_bar.dart';
+import 'package:delivery_app_test/feature/presentation/widgets/cart_list_widget.dart';
+import 'package:delivery_app_test/feature/presentation/widgets/category_list_widget.dart';
+import 'package:delivery_app_test/feature/presentation/widgets/dish_list_app_bar.dart';
+import 'package:delivery_app_test/feature/presentation/widgets/main_app_bar.dart';
 import 'package:delivery_app_test/locator_service.dart';
 import 'package:delivery_app_test/locator_service.dart' as di;
 import 'package:flutter/material.dart';
@@ -13,14 +20,9 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -29,8 +31,32 @@ class _MyAppState extends State<MyApp> {
             create: (context) => sl<CategoryListCubit>()..loadCategories()),
         BlocProvider<DishListBloc>(create: (context) => sl<DishListBloc>()),
         BlocProvider<CartBloc>(create: (context) => sl<CartBloc>()),
+        BlocProvider<NavigationBloc>(create: (context) => sl<NavigationBloc>()),
       ],
-      child: const MainPage(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: BlocBuilder<NavigationBloc, NavigationState>(
+          builder: (context, state) {
+            StatelessWidget? body;
+            StatelessWidget? appBar = const MainAppBar();
+            if (state.category.isNotEmpty) {
+              body = const DishListPage();
+              appBar = DishListAppBar(categoryName: state.category);
+            } else {
+              if (state.index == 0) body = const CategoryList();
+              if (state.index == 2) body = const CartListWidget();
+            }
+            return Scaffold(
+              appBar: PreferredSize(
+                preferredSize: const Size.fromHeight(kToolbarHeight),
+                child: appBar,
+              ),
+              body: body,
+              bottomNavigationBar: MyBottomNavigationBar(index: state.index),
+            );
+          },
+        ),
+      ),
     );
   }
 }

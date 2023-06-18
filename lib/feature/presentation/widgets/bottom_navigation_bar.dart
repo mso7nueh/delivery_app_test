@@ -1,28 +1,20 @@
-import 'package:delivery_app_test/feature/presentation/pages/cart_page.dart';
+import 'package:delivery_app_test/feature/presentation/bloc/navigation_bloc/navigation_bloc.dart';
+import 'package:delivery_app_test/feature/presentation/bloc/navigation_bloc/navigation_event.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class MyBottomNavigationBar extends StatefulWidget {
-  const MyBottomNavigationBar({super.key});
+class MyBottomNavigationBar extends StatelessWidget {
+  final index;
 
-  @override
-  State<MyBottomNavigationBar> createState() => _MyBottomNavigationBarState();
-}
-
-class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
-  int index = 0;
+  const MyBottomNavigationBar({required this.index, super.key});
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      onTap: (i) {
-        setState(() {
-          index = i;
-          if (index == 2) {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const CartPage()));
-          }
-        });
+      onTap: (index) {
+        BlocProvider.of<NavigationBloc>(context)
+            .add(NavigationIndexChange(index: index, category: ''));
       },
       currentIndex: index,
       type: BottomNavigationBarType.fixed,
