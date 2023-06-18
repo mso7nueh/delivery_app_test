@@ -3,8 +3,9 @@ import 'package:delivery_app_test/feature/presentation/widgets/dish_list_app_bar
 import 'package:delivery_app_test/feature/presentation/widgets/dish_list_widget.dart';
 import 'package:flutter/material.dart';
 
-class DishPage extends StatelessWidget {
+class DishPage extends StatefulWidget {
   final String categoryName;
+
   static const List<String> categories = [
     'Все меню',
     'Салаты',
@@ -16,41 +17,68 @@ class DishPage extends StatelessWidget {
   const DishPage({super.key, required this.categoryName});
 
   @override
+  State<DishPage> createState() => _DishPageState();
+}
+
+class _DishPageState extends State<DishPage> {
+  Set<String> filters = <String>{'Все меню'};
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: DishListAppBar(
           height: 57.0,
-          categoryName: categoryName,
+          categoryName: widget.categoryName,
         ),
-        bottomNavigationBar: MyBottomNavigationBar(),
+        bottomNavigationBar: const MyBottomNavigationBar(),
         body: Column(
           children: [
             SingleChildScrollView(
-              padding: EdgeInsets.only(left: 12, right: 12.0),
+              padding: const EdgeInsets.only(left: 12, right: 12.0),
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: categories
-                    .map((category) => Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: FilterChip(
-                              labelPadding: EdgeInsets.only(
-                                  left: 12, right: 12, bottom: 2, top: 2),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              labelStyle: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                              ),
-                              label: Text(category),
-                              onSelected: (selected) {}),
-                        ))
+                children: DishPage.categories
+                    .map(
+                      (category) => Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: FilterChip(
+                          showCheckmark: false,
+                          selectedColor:
+                              const Color.fromARGB(255, 51, 100, 224),
+                          selected: filters.contains(category),
+                          labelPadding: const EdgeInsets.only(
+                              left: 12, right: 12, bottom: 2, top: 2),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          labelStyle: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: filters.contains(category)
+                                ? Colors.white
+                                : Colors.black,
+                          ),
+                          label: Text(
+                            category,
+                          ),
+                          onSelected: (selected) {
+                            setState(() {
+                              if (selected) {
+                                filters.add(category);
+                              } else {
+                                filters.remove(category);
+                              }
+                            });
+                          },
+                        ),
+                      ),
+                    )
                     .toList(),
               ),
             ),
-            Expanded(child: DishList()),
+            const Expanded(child: DishList()),
           ],
         ),
       ),

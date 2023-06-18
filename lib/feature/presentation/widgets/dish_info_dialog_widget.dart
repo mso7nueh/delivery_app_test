@@ -118,7 +118,8 @@ class DishInfoDialogWidget extends StatelessWidget {
             child: CupertinoButton(
               padding: const EdgeInsets.all(16.0),
               onPressed: () {
-                BlocProvider.of<CartBloc>(context).add(AddDishEvent(dish: dish));
+                BlocProvider.of<CartBloc>(context)
+                    .add(AddDishEvent(dish: dish));
               },
               color: const Color.fromARGB(255, 51, 100, 224),
               child: const Text(
