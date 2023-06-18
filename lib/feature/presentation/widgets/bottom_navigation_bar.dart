@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart' as badges;
 import 'package:delivery_app_test/feature/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'package:delivery_app_test/feature/presentation/bloc/cart_bloc/cart_state.dart';
 import 'package:delivery_app_test/feature/presentation/bloc/navigation_bloc/navigation_bloc.dart';
@@ -63,9 +64,18 @@ class MyBottomNavigationBar extends StatelessWidget {
             BottomNavigationBarItem(
                 icon: Padding(
                   padding: const EdgeInsets.only(bottom: 5.0, top: 5.0),
-                  child: Badge.count(
-                    count: state.cartMap.isNotEmpty ? state.cartMap.values.toList().reduce((value, element) => value + element) : 0,
-                    isLabelVisible: state.cartMap.isNotEmpty,
+                  child: badges.Badge(
+                    badgeStyle: const badges.BadgeStyle(
+                      badgeColor: Colors.red,
+                      elevation: 0,
+                    ),
+                    badgeContent: Text(
+                      state.cartMap.isNotEmpty
+                          ? '${state.cartMap.values.toList().reduce((value, element) => value + element)}'
+                          : '0',
+                      style: const TextStyle(color: Colors.white, fontSize: 12),
+                    ),
+                    showBadge: state.cartMap.isNotEmpty,
                     child: SvgPicture.asset(
                       'assets/icons/cart.svg',
                       color: index == 2
