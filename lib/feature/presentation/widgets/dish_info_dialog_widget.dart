@@ -1,6 +1,9 @@
 import 'package:delivery_app_test/feature/domain/entities/dish_entity.dart';
+import 'package:delivery_app_test/feature/presentation/bloc/cart_bloc/cart_bloc.dart';
+import 'package:delivery_app_test/feature/presentation/bloc/cart_bloc/cart_event.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DishInfoDialogWidget extends StatelessWidget {
   final DishEntity dish;
@@ -114,7 +117,9 @@ class DishInfoDialogWidget extends StatelessWidget {
             width: double.infinity,
             child: CupertinoButton(
               padding: const EdgeInsets.all(16.0),
-              onPressed: () => Navigator.pop(context),
+              onPressed: () {
+                BlocProvider.of<CartBloc>(context).add(AddDishEvent(dish: dish));
+              },
               color: const Color.fromARGB(255, 51, 100, 224),
               child: const Text(
                 'Добавить в корзину',

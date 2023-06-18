@@ -1,3 +1,4 @@
+import 'package:delivery_app_test/feature/presentation/pages/cart_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -17,6 +18,10 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
       onTap: (i) {
         setState(() {
           index = i;
+          if (index == 2) {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const CartPage()));
+          }
         });
       },
       currentIndex: index,

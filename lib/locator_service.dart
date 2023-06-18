@@ -7,16 +7,21 @@ import 'package:delivery_app_test/feature/domain/repositories/category_repositor
 import 'package:delivery_app_test/feature/domain/repositories/dish_repository.dart';
 import 'package:delivery_app_test/feature/domain/usecases/get_all_categories.dart';
 import 'package:delivery_app_test/feature/domain/usecases/get_all_dishes.dart';
+import 'package:delivery_app_test/feature/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'package:delivery_app_test/feature/presentation/bloc/category_list_cubit/category_list_cubit.dart';
 import 'package:delivery_app_test/feature/presentation/bloc/dish_list_bloc/dish_list_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:http/http.dart' as http;
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 final sl = GetIt.instance;
 
 Future<void> init() async {
   // BLoC / Cubit
+  sl.registerFactory(
+    () => CartBloc(),
+  );
+
   sl.registerFactory(
     () => CategoryListCubit(getAllCategories: sl<GetAllCategories>()),
   );
@@ -50,7 +55,7 @@ Future<void> init() async {
   );
 
   sl.registerLazySingleton<DishRemoteDataSource>(
-      () => DishRemoteDataSourceImpl(client: sl()),
+    () => DishRemoteDataSourceImpl(client: sl()),
   );
 
   // Core
