@@ -75,10 +75,14 @@ class DishCartWidget extends StatelessWidget {
                             child: SvgPicture.asset('assets/icons/remove.svg'),
                           ),
                         ),
-                        Text(
-                          '${state.cartMap[dish]}',
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w500,
+                        SizedBox(
+                          width: 20,
+                          child: Text(
+                            '${state.cartMap[dish]}',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w500,
+                            ),
+                            textAlign: TextAlign.center,
                           ),
                         ),
                         GestureDetector(
