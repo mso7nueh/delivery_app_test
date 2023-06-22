@@ -24,6 +24,7 @@ class _DishFilterChipWidgetState extends State<DishFilterChipWidget> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       padding: const EdgeInsets.only(left: 12, right: 12.0),
       scrollDirection: Axis.horizontal,
       child: Row(

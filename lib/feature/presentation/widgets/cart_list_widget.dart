@@ -16,6 +16,7 @@ class CartListWidget extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           children: [
             ListView.builder(
+              physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.all(16.0),
               itemCount: state.cartMap.length + 1,
               itemBuilder: (BuildContext context, int index) {

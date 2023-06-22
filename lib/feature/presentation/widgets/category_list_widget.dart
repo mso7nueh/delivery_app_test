@@ -30,6 +30,7 @@ class CategoryList extends StatelessWidget {
         }
 
         return ListView.builder(
+          physics: const BouncingScrollPhysics(),
           itemBuilder: (context, index) {
             return CategoryCard(category: categories[index]);
           },

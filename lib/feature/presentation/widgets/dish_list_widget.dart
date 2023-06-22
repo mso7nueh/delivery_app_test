@@ -40,6 +40,7 @@ class DishList extends StatelessWidget {
         }
 
         return GridView.builder(
+            physics: const BouncingScrollPhysics(),
             padding: const EdgeInsets.all(12.0),
             itemCount: dishes.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
