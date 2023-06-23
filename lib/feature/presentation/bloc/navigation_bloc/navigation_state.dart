@@ -11,10 +11,13 @@ abstract class NavigationState extends Equatable {
 }
 
 class NavigationIndexState extends NavigationState {
+  @override
   final int index;
+  @override
   final String category;
 
-  const NavigationIndexState({required this.index, required this.category}) : super(index, category);
+  const NavigationIndexState({required this.index, required this.category})
+      : super(index, category);
 
   @override
   List<Object?> get props => [index, category];

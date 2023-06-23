@@ -1,6 +1,6 @@
 import 'package:delivery_app_test/feature/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'package:delivery_app_test/feature/presentation/bloc/cart_bloc/cart_state.dart';
-import 'package:delivery_app_test/feature/presentation/widgets/dish_cart_widget.dart';
+import 'package:delivery_app_test/feature/presentation/widgets/cart/dish_cart_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';

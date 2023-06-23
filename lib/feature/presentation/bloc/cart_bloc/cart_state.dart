@@ -12,20 +12,26 @@ abstract class CartState extends Equatable {
 }
 
 class DishAddedState extends CartState {
+  @override
   final Map<DishEntity, int> cartMap;
+  @override
   final int cartSum;
 
-  const DishAddedState({required this.cartMap, required this.cartSum}) : super(cartMap: cartMap, cartSum: cartSum);
+  const DishAddedState({required this.cartMap, required this.cartSum})
+      : super(cartMap: cartMap, cartSum: cartSum);
 
   @override
   List<Object> get props => [cartMap, cartSum];
 }
 
 class DishRemovedState extends CartState {
+  @override
   final Map<DishEntity, int> cartMap;
+  @override
   final int cartSum;
 
-  const DishRemovedState({required this.cartMap, required this.cartSum}) : super(cartMap: cartMap, cartSum: cartSum);
+  const DishRemovedState({required this.cartMap, required this.cartSum})
+      : super(cartMap: cartMap, cartSum: cartSum);
 
   @override
   List<Object> get props => [cartMap, cartSum];

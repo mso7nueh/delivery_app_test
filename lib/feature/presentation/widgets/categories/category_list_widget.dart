@@ -1,7 +1,7 @@
 import 'package:delivery_app_test/feature/domain/entities/category_entity.dart';
 import 'package:delivery_app_test/feature/presentation/bloc/category_list_cubit/category_list_cubit.dart';
 import 'package:delivery_app_test/feature/presentation/bloc/category_list_cubit/category_lsit_state.dart';
-import 'package:delivery_app_test/feature/presentation/widgets/category_card_widget.dart';
+import 'package:delivery_app_test/feature/presentation/widgets/categories/category_card_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

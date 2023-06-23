@@ -1,7 +1,7 @@
 import 'package:delivery_app_test/feature/domain/entities/dish_entity.dart';
 import 'package:delivery_app_test/feature/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'package:delivery_app_test/feature/presentation/bloc/cart_bloc/cart_state.dart';
-import 'package:delivery_app_test/feature/presentation/widgets/dish_info_dialog_widget.dart';
+import 'package:delivery_app_test/feature/presentation/widgets/dishes/dish_info_dialog_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:transparent_image/transparent_image.dart';

@@ -1,4 +1,1 @@
-import 'dart:ui';
-
-class AppColors {
-}
+class AppColors {}

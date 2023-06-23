@@ -4,11 +4,11 @@ import 'package:delivery_app_test/feature/presentation/bloc/dish_list_bloc/dish_
 import 'package:delivery_app_test/feature/presentation/bloc/navigation_bloc/navigation_bloc.dart';
 import 'package:delivery_app_test/feature/presentation/bloc/navigation_bloc/navigation_state.dart';
 import 'package:delivery_app_test/feature/presentation/page/dish_list_page.dart';
-import 'package:delivery_app_test/feature/presentation/widgets/bottom_navigation_bar.dart';
-import 'package:delivery_app_test/feature/presentation/widgets/cart_list_widget.dart';
-import 'package:delivery_app_test/feature/presentation/widgets/category_list_widget.dart';
-import 'package:delivery_app_test/feature/presentation/widgets/dish_list_app_bar.dart';
-import 'package:delivery_app_test/feature/presentation/widgets/main_app_bar.dart';
+import 'package:delivery_app_test/feature/presentation/widgets/appbars/bottom_navigation_bar.dart';
+import 'package:delivery_app_test/feature/presentation/widgets/cart/cart_list_widget.dart';
+import 'package:delivery_app_test/feature/presentation/widgets/categories/category_list_widget.dart';
+import 'package:delivery_app_test/feature/presentation/widgets/appbars/dish_list_app_bar.dart';
+import 'package:delivery_app_test/feature/presentation/widgets/appbars/main_app_bar.dart';
 import 'package:delivery_app_test/locator_service.dart';
 import 'package:delivery_app_test/locator_service.dart' as di;
 import 'package:flutter/material.dart';

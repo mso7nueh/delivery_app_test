@@ -11,7 +11,9 @@ abstract class NavigationEvent extends Equatable {
 }
 
 class NavigationIndexChange extends NavigationEvent {
+  @override
   final int index;
+  @override
   final String category;
 
   const NavigationIndexChange({required this.index, required this.category});

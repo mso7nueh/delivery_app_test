@@ -52,17 +52,19 @@ class _DishFilterChipWidgetState extends State<DishFilterChipWidget> {
                     category,
                   ),
                   onSelected: (selected) {
-                    setState(() {
-                      if (selected) {
-                        filters.add(category);
-                        BlocProvider.of<DishListBloc>(context, listen: false)
-                            .add(FetchDishList(filters: filters));
-                      } else {
-                        if (filters.length > 1) filters.remove(category);
-                        BlocProvider.of<DishListBloc>(context, listen: false)
-                            .add(FetchDishList(filters: filters));
-                      }
-                    });
+                    setState(
+                      () {
+                        if (selected) {
+                          filters.add(category);
+                          BlocProvider.of<DishListBloc>(context, listen: false)
+                              .add(FetchDishList(filters: filters));
+                        } else {
+                          if (filters.length > 1) filters.remove(category);
+                          BlocProvider.of<DishListBloc>(context, listen: false)
+                              .add(FetchDishList(filters: filters));
+                        }
+                      },
+                    );
                   },
                 ),
               ),

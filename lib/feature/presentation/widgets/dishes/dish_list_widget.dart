@@ -1,12 +1,12 @@
 import 'package:delivery_app_test/feature/domain/entities/dish_entity.dart';
 import 'package:delivery_app_test/feature/presentation/bloc/dish_list_bloc/dish_list_bloc.dart';
 import 'package:delivery_app_test/feature/presentation/bloc/dish_list_bloc/dish_list_state.dart';
-import 'package:delivery_app_test/feature/presentation/widgets/dish_card.dart';
+import 'package:delivery_app_test/feature/presentation/widgets/dishes/dish_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/dish_list_bloc/dish_list_event.dart';
+import '../../bloc/dish_list_bloc/dish_list_event.dart';
 
 class DishList extends StatelessWidget {
   const DishList({super.key});
