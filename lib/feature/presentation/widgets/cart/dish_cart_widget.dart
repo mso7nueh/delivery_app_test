@@ -71,7 +71,8 @@ class DishCartWidget extends StatelessWidget {
                                 .add(RemoveDishEvent(dish: dish));
                           },
                           child: Padding(
-                            padding: const EdgeInsets.fromLTRB(6.0, 4.0, 16.0, 4.0),
+                            padding:
+                                const EdgeInsets.fromLTRB(6.0, 4.0, 16.0, 4.0),
                             child: SvgPicture.asset('assets/icons/remove.svg'),
                           ),
                         ),
@@ -91,7 +92,8 @@ class DishCartWidget extends StatelessWidget {
                                 .add(AddDishEvent(dish: dish));
                           },
                           child: Padding(
-                            padding: const EdgeInsets.fromLTRB(16.0, 4.0, 6.0, 4.0),
+                            padding:
+                                const EdgeInsets.fromLTRB(16.0, 4.0, 6.0, 4.0),
                             child: SvgPicture.asset('assets/icons/add.svg'),
                           ),
                         ),

@@ -9,6 +9,7 @@ abstract class DishListEvent extends Equatable {
 
 class FetchDishList extends DishListEvent {
   final Set<String> filters;
+
   const FetchDishList({required this.filters});
 
   @override
