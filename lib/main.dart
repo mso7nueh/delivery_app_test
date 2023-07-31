@@ -1,6 +1,22 @@
+import 'package:delivery_app_test/feature/presentation/bloc/cart_bloc/cart_bloc.dart';
+import 'package:delivery_app_test/feature/presentation/bloc/category_list_cubit/category_list_cubit.dart';
+import 'package:delivery_app_test/feature/presentation/bloc/dish_list_bloc/dish_list_bloc.dart';
+import 'package:delivery_app_test/feature/presentation/bloc/navigation_bloc/navigation_bloc.dart';
+import 'package:delivery_app_test/feature/presentation/bloc/navigation_bloc/navigation_state.dart';
+import 'package:delivery_app_test/feature/presentation/page/dish_list_page.dart';
+import 'package:delivery_app_test/feature/presentation/widgets/appbars/bottom_navigation_bar.dart';
+import 'package:delivery_app_test/feature/presentation/widgets/appbars/dish_list_app_bar.dart';
+import 'package:delivery_app_test/feature/presentation/widgets/appbars/main_app_bar.dart';
+import 'package:delivery_app_test/feature/presentation/widgets/cart/cart_list_widget.dart';
+import 'package:delivery_app_test/feature/presentation/widgets/categories/category_list_widget.dart';
+import 'package:delivery_app_test/locator_service.dart';
+import 'package:delivery_app_test/locator_service.dart' as di;
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
   runApp(const MyApp());
 }
 
@@ -9,60 +25,41 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<CategoryListCubit>(
+            create: (context) => sl<CategoryListCubit>()..loadCategories()),
+        BlocProvider<DishListBloc>(create: (context) => sl<DishListBloc>()),
+        BlocProvider<CartBloc>(create: (context) => sl<CartBloc>()),
+        BlocProvider<NavigationBloc>(create: (context) => sl<NavigationBloc>()),
+      ],
+      child: MaterialApp(
+        theme: ThemeData(
+          fontFamily: 'SFProDisplay',
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        debugShowCheckedModeBanner: false,
+        home: BlocBuilder<NavigationBloc, NavigationState>(
+          builder: (context, state) {
+            StatelessWidget? body;
+            StatelessWidget? appBar = const MainAppBar();
+            if (state.category.isNotEmpty) {
+              body = const DishListPage();
+              appBar = DishListAppBar(categoryName: state.category);
+            } else {
+              if (state.index == 0) body = const CategoryList();
+              if (state.index == 2) body = const CartListWidget();
+            }
+            return Scaffold(
+              backgroundColor: Colors.white,
+              appBar: PreferredSize(
+                preferredSize: const Size.fromHeight(kToolbarHeight),
+                child: appBar,
+              ),
+              body: body,
+              bottomNavigationBar: MyBottomNavigationBar(index: state.index),
+            );
+          },
+        ),
       ),
     );
   }
